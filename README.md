@@ -19,11 +19,11 @@
                     ↓
 ┌──────────────────────────────────────────────────────────────────┐
 │  第二模块：评估                        【环境：pyrose，仅 CPU】     │
-│                                                                   │
+│                                                                  │
 │  step4_rosetta_dock.py ──►  docking_results/*_best.pdb           │
 │         ↓                                                        │
 │  step5_interface_metrics.py ──►  evaluation_results.csv          │
-│         ↓             （9 项指标：ddG、dSASA、SC、堆积密度……）      │
+│         ↓             （9 项指标：ddG、dSASA、SC、堆积密度……）     │
 │  step6_rank_and_report.py ──►  ranked_candidates.csv             │
 │                                evaluation_report.html            │
 └──────────────────────────────────────────────────────────────────┘
