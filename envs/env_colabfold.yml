@@ -1,9 +1,19 @@
 name: colabfold
 # =============================================================
-# Optional: AlphaFold2 Validation Environment (ColabFold)
-# Used for structural re-prediction of designed peptides
-# Python: 3.9, JAX + CUDA 12
-# Usage: conda run -n colabfold colabfold_batch [args]
+# 【可选】ColabFold AF2 结构验证环境
+# 用于对 top-N 候选肽进行 AlphaFold2-Multimer 异源二聚体预测
+# Python: 3.9 | JAX + CUDA 12 | localcolabfold 1.6.1
+#
+# 本机已安装路径：
+#   二进制：/home/liu_sy/conda/envs/colabfold/bin/colabfold_batch
+#   AF2 权重：/home/liu_sy/.cache/colabfold/params/
+#     params_model_1~5_multimer_v3.npz（新机器首次运行自动下载，约 3.5 GB）
+#
+# 安装方法（推荐 localcolabfold 一键脚本）：
+#   bash <(curl -fsSL \
+#     https://raw.githubusercontent.com/YoshitakaMo/localcolabfold/main/install_colabfold_linux.sh)
+#
+# 硬件要求：GPU ≥ 8 GB VRAM（A100/V100 推荐）
 # =============================================================
 
 channels:

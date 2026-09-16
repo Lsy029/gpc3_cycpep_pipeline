@@ -286,6 +286,75 @@ python block2_evaluation/step6_rank_and_report.py \
     --output_dir block2_evaluation
 ```
 
+#### 第二模块：【可选】ColabFold AF2 结构验证（step5b）
+
+> ⚠️ **此步骤为可选**，需要单独的 `colabfold` conda 环境和 GPU。
+> 可在 step5 之后、step6 之前运行，也可在 step6 之后对 top-N 运行。
+
+**环境要求：**
+- conda 环境：`colabfold`（localcolabfold 1.6.1，JAX CUDA 12）
+- ColabFold 二进制：`/home/liu_sy/conda/envs/colabfold/bin/colabfold_batch`
+- AF2 模型权重（已下载，本机路径）：
+
+```
+/home/liu_sy/.cache/colabfold/params/
+├── params_model_1_multimer_v3.npz
+├── params_model_2_multimer_v3.npz
+├── params_model_3_multimer_v3.npz
+├── params_model_4_multimer_v3.npz
+└── params_model_5_multimer_v3.npz
+```
+
+> 新机器首次运行时 ColabFold 会自动下载上述权重（约 3.5 GB）。
+
+**运行方法：**
+
+```bash
+conda activate colabfold
+
+# 对 top-10 候选肽进行 AF2 异源二聚体预测
+python block2_evaluation/step5b_colabfold_validate.py \
+    --ranked_csv block2_evaluation/evaluation_results.csv \
+    --output_dir block2_evaluation/colabfold_results \
+    --top_n 10 \
+    --n_recycle 3
+
+# 若有 GPC3 完整序列 FASTA（推荐）：
+python block2_evaluation/step5b_colabfold_validate.py \
+    --ranked_csv block2_evaluation/evaluation_results.csv \
+    --gpc3_fasta gpc3_af2.fasta \
+    --top_n 10
+```
+
+**输出文件：**
+
+| 文件 | 说明 |
+|------|------|
+| `colabfold_results/{名称}/` | ColabFold 原始输出（PDB、PAE JSON、图片） |
+| `colabfold_results/colabfold_scores.csv` | iPAE / iptm / pLDDT_pep 汇总 |
+| `colabfold_results/colabfold_summary.png` | 三指标柱状图 |
+| `colabfold_results/colabfold_report.html` | 含 PAE 图的 HTML 报告 |
+
+**关键指标：**
+
+| 指标 | 合格阈值 | 说明 |
+|------|---------|------|
+| iPAE | < 0.5 | 界面预测对齐误差（越低越好） |
+| iptm | > 0.3 | 界面模板建模评分（越高越好） |
+| pLDDT_pep | > 70 | 肽段结构置信度（越高越好） |
+
+**示例结果（seq65，本项目最优候选）：**
+
+| 指标 | seq65 |
+|------|-------|
+| iPAE | 0.671 |
+| iptm | 0.160 |
+| pLDDT_pep | ~72 |
+
+![seq65 PAE](docs/images/colabfold_pae_seq65.png)
+
+---
+
 #### 第三模块：突变扫描
 
 ```bash
