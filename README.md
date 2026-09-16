@@ -8,35 +8,35 @@
 
 ```
 ┌──────────────────────────────────────────────────────────────────┐
-│  第一模块：设计                        【环境：SE3nv2，需 GPU】  │
-│                                                                   │
+│  第一模块：设计                        【环境：SE3nv2，需 GPU】     │
+│                                                                  │
 │  step1_rfdiffusion.py  ──►  backbone_pdbs/*.pdb                  │
-│         ↓                                                         │
+│         ↓                                                        │
 │  step2_proteinmpnn.py  ──►  mpnn_seqs/all_sequences.fasta        │
-│         ↓                                                         │
-│  step3_build_cycpep.py ──►  cyclic_pdbs/*.pdb  （CIAc-W 环）    │
+│         ↓                                                        │
+│  step3_build_cycpep.py ──►  cyclic_pdbs/*.pdb  （CIAc-W 环）      │
 └──────────────────────────────────────────────────────────────────┘
                     ↓
 ┌──────────────────────────────────────────────────────────────────┐
-│  第二模块：评估                        【环境：pyrose，仅 CPU】  │
+│  第二模块：评估                        【环境：pyrose，仅 CPU】     │
 │                                                                   │
 │  step4_rosetta_dock.py ──►  docking_results/*_best.pdb           │
-│         ↓                                                         │
+│         ↓                                                        │
 │  step5_interface_metrics.py ──►  evaluation_results.csv          │
-│         ↓             （9 项指标：ddG、dSASA、SC、堆积密度……）  │
+│         ↓             （9 项指标：ddG、dSASA、SC、堆积密度……）      │
 │  step6_rank_and_report.py ──►  ranked_candidates.csv             │
 │                                evaluation_report.html            │
 └──────────────────────────────────────────────────────────────────┘
                     ↓
 ┌──────────────────────────────────────────────────────────────────┐
-│  第三模块：突变扫描                    【环境：pyrose，仅 CPU】  │
-│                                                                   │
+│  第三模块：突变扫描                    【环境：pyrose，仅 CPU】     │
+│                                                                  │
 │  step7_alanine_scan.py  ──►  alanine_scan_ddg.csv                │
-│  （第一轮：各位点丙氨酸替换 ΔΔG）                               │
-│         ↓                                                         │
+│  （第一轮：各位点丙氨酸替换 ΔΔG）                                   │
+│         ↓                                                        │
 │  step8_saturation_scan.py ──►  saturation_ddg.csv                │
-│  （第二轮：热点位点 × 19 种氨基酸全量突变）                     │
-│         ↓                                                         │
+│  （第二轮：热点位点 × 19 种氨基酸全量突变）                         │
+│         ↓                                                        │
 │  step9_scan_report.py  ──►  mutation_scan_report.html            │
 │                              热图、top_mutations.csv             │
 └──────────────────────────────────────────────────────────────────┘
