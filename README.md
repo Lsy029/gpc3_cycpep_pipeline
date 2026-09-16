@@ -44,6 +44,67 @@
 
 ---
 
+## 示例结果
+
+### 第二模块：Rosetta 对接与评估
+
+**20 条候选肽对接姿态总览（step4 输出）**
+
+![对接结果总览](docs/images/docking_grid_all20.png)
+
+**最优候选肽（pep1）精细对接面板（step4 输出）**
+
+![pep1 对接面板](docs/images/docking_pep1_panel.png)
+
+**候选肽综合排名（step6 输出）**
+
+![Top10 综合排名](docs/images/top10_ranking.png)
+
+**指标得分分布（step5/6 输出）**
+
+![评分分布](docs/images/score_distributions.png)
+
+**界面接触热图（step5 输出）**
+
+![界面接触热图](docs/images/contact_heatmap.png)
+
+---
+
+### 第三模块：突变扫描
+
+**第一轮丙氨酸扫描 ΔΔG 热图（step7 输出）**  
+红色 = 热点位点（Ala 替换削弱结合）；蓝色 = Ala 改善结合
+
+![丙氨酸扫描热图](docs/images/alanine_scan_heatmap.png)
+
+**第二轮饱和突变均值 ΔΔG 热图（step8/9 输出）**  
+负值（蓝色）= 突变优于野生型
+
+![饱和突变均值热图](docs/images/saturation_mean_heatmap.png)
+
+**pos8 位点饱和突变详图**（热点位点，疏水替换信号最强）
+
+![pos8 饱和突变](docs/images/saturation_pos8.png)
+
+**pos9 位点饱和突变详图**（Y→F 改善信号）
+
+![pos9 饱和突变](docs/images/saturation_pos9.png)
+
+---
+
+### 参考：ColabFold AF2 结构验证（最优候选 seq65）
+
+**预测对齐误差（PAE）图**  
+左下角肽-受体区块颜色越深，界面预测置信度越高
+
+![seq65 PAE](docs/images/colabfold_pae_seq65.png)
+
+**pLDDT 置信度图**
+
+![seq65 pLDDT](docs/images/colabfold_plddt_seq65.png)
+
+---
+
 ## 系统环境要求
 
 ### 硬件
