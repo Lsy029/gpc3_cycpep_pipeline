@@ -293,19 +293,29 @@ python block2_evaluation/step6_rank_and_report.py \
 
 **环境要求：**
 - conda 环境：`colabfold`（localcolabfold 1.6.1，JAX CUDA 12）
-- ColabFold 二进制：`/home/liu_sy/conda/envs/colabfold/bin/colabfold_batch`
-- AF2 模型权重（已下载，本机路径）：
+- 安装方法（localcolabfold 一键脚本）：
 
-```
-/home/liu_sy/.cache/colabfold/params/
-├── params_model_1_multimer_v3.npz
-├── params_model_2_multimer_v3.npz
-├── params_model_3_multimer_v3.npz
-├── params_model_4_multimer_v3.npz
-└── params_model_5_multimer_v3.npz
+```bash
+bash <(curl -fsSL \
+  https://raw.githubusercontent.com/YoshitakaMo/localcolabfold/main/install_colabfold_linux.sh)
 ```
 
-> 新机器首次运行时 ColabFold 会自动下载上述权重（约 3.5 GB）。
+- AF2 模型权重（**首次运行自动下载，约 3.5 GB**）：
+
+```
+来源：https://storage.googleapis.com/alphafold/alphafold_params_colab_2022-12-06.tar
+下载到：~/.cache/colabfold/params/
+包含：params_model_1~5_multimer_v3.npz（AlphaFold2-Multimer v3）
+```
+
+也可提前手动下载：
+```bash
+python -c "
+from colabfold.download import download_alphafold_params
+from pathlib import Path
+download_alphafold_params('alphafold2_multimer_v3', Path('~/.cache/colabfold').expanduser())
+"
+```
 
 **运行方法：**
 
