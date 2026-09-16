@@ -1,0 +1,60 @@
+name: SE3nv2
+# =============================================================
+# Block 1: RFdiffusion + ProteinMPNN Design Environment
+# GPU: NVIDIA RTX PRO 6000 Blackwell (sm_120), CUDA 12.8
+# Python: 3.9
+# Usage: conda run -n SE3nv2 python block1_design/step1_rfdiffusion.py [args]
+# =============================================================
+
+channels:
+  - pytorch
+  - nvidia
+  - conda-forge
+  - defaults
+
+dependencies:
+  - python=3.9
+  - pip
+
+  - pip:
+    # ── Deep learning (PyTorch 2.7 + CUDA 12.8, Blackwell sm_120) ──
+    - torch==2.7.0+cu128  --index-url https://download.pytorch.org/whl/cu128
+    - torchvision==0.22.0+cu128  --index-url https://download.pytorch.org/whl/cu128
+
+    # ── SE3-equivariant network (RFdiffusion) ──
+    - se3-transformer==1.0.0
+    - e3nn==0.6.0
+    - einops==0.8.2
+
+    # ── DGL (graph neural network backend) ──
+    # CUDA 12.1 wheel is compatible with CUDA 12.8 runtime
+    - dgl==2.5.0+cu121 --find-links https://data.dgl.ai/wheels/torch-2.7/cu121/repo.html
+
+    # ── Hydra config system (must be <2.0 for RFdiffusion) ──
+    - hydra-core==1.3.4
+    - omegaconf==2.3.1
+
+    # ── Scientific stack ──
+    - numpy==1.26.4
+    - scipy==1.13.1
+    - opt_einsum==3.4.0
+
+    # ── Cheminformatics (step3 cyclic peptide builder) ──
+    - rdkit>=2023.9.5
+
+    # ── Utilities ──
+    - pandas>=2.0.0
+    - tqdm>=4.66.0
+    - biopython>=1.81
+
+    # ── RFdiffusion: install from source ──
+    # git clone https://github.com/RosettaCommons/RFdiffusion
+    # pip install -e RFdiffusion/
+    #
+    # ── ProteinMPNN: no install needed, run as script ──
+    # git clone https://github.com/dauparas/ProteinMPNN
+
+# Hardware requirements:
+#   - GPU: NVIDIA ≥24GB VRAM for full GPC3 (580 residues)
+#   - RAM: ≥32GB system RAM
+#   - Storage: ≥10GB for model weights

@@ -1,0 +1,49 @@
+name: colabfold
+# =============================================================
+# Optional: AlphaFold2 Validation Environment (ColabFold)
+# Used for structural re-prediction of designed peptides
+# Python: 3.9, JAX + CUDA 12
+# Usage: conda run -n colabfold colabfold_batch [args]
+# =============================================================
+
+channels:
+  - conda-forge
+  - defaults
+
+dependencies:
+  - python=3.9
+  - pip
+
+  - pip:
+    # ── ColabFold + LocalColabFold ──
+    - colabfold[alphafold-minus-jax]==1.6.1
+
+    # ── JAX with CUDA 12 ──
+    - jax[cuda12_pip]==0.4.25
+      --find-links https://storage.googleapis.com/jax-releases/jax_cuda_releases.html
+
+    # ── AlphaFold2 (minus JAX, bundled with colabfold) ──
+    - dm-haiku==0.0.12
+    - dm-tree==0.1.8
+    - ml-collections==0.1.1
+
+    # ── Scientific stack ──
+    - numpy>=1.24.0
+    - scipy>=1.11.0
+    - pandas>=2.0.0
+    - biopython>=1.81
+
+    # ── Utilities ──
+    - tqdm>=4.66.0
+    - matplotlib>=3.7.0
+
+# Installation of LocalColabFold:
+#   bash <(curl -fsSL https://raw.githubusercontent.com/YoshitakaMo/localcolabfold/main/install_colabfold_linux.sh)
+#
+# Usage example (AF2 monomer, no MSA, for cyclic peptide re-prediction):
+#   colabfold_batch --num-recycle 3 --msa-mode single_sequence \
+#       sequences.fasta output_dir/
+#
+# Hardware requirements:
+#   - GPU: ≥8GB VRAM (A100/V100 recommended for speed)
+#   - RAM: ≥16GB

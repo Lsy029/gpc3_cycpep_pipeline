@@ -1,0 +1,53 @@
+# ============================================================
+# GPC3 Cyclic Peptide Pipeline — Python Dependencies
+# ============================================================
+# Install via pip (after activating appropriate conda env):
+#   pip install -r requirements.txt
+#
+# NOTE: PyRosetta and RFdiffusion are NOT pip-installable;
+#       see envs/ directory for full conda environment specs.
+#
+# Block 1 (Design): SE3nv2 environment
+#   - torch 2.7.0+cu128 (GPU required for RFdiffusion)
+#   - se3-transformer, e3nn, dgl, hydra-core (see env_design.yml)
+#
+# Block 2-3 (Evaluation + Scan): pyrose environment
+#   - pyrosetta (requires academic license, see env_pyrosetta.yml)
+# ============================================================
+
+# Scientific core
+numpy==1.26.4
+scipy==1.13.1
+pandas>=2.0.0
+
+# Cheminformatics (cyclic peptide 3D construction)
+rdkit>=2023.9.5
+
+# Visualization and reporting
+matplotlib>=3.7.0
+seaborn>=0.12.0
+
+# Bioinformatics utilities
+biopython>=1.81
+
+# Progress and utilities
+tqdm>=4.66.0
+
+# ============================================================
+# NOT INCLUDED HERE (install separately):
+#
+# PyRosetta 2026.19 — academic license required
+#   Register: https://www.pyrosetta.org/downloads
+#   Install:  pip install pyrosetta-2026.19+release.*-cp39-linux_x86_64.whl
+#
+# RFdiffusion — install from source
+#   git clone https://github.com/RosettaCommons/RFdiffusion
+#   pip install -e RFdiffusion/
+#
+# ProteinMPNN — install from source
+#   git clone https://github.com/dauparas/ProteinMPNN
+#   (no pip install needed, used as local script)
+#
+# PyTorch 2.7 + CUDA 12.8 (Block 1 only)
+#   pip install torch==2.7.0+cu128 --index-url https://download.pytorch.org/whl/cu128
+# ============================================================

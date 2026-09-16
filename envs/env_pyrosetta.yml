@@ -1,0 +1,59 @@
+name: pyrose
+# =============================================================
+# Block 2-3: PyRosetta Evaluation + Mutation Scan Environment
+# CPU-based (no GPU required for evaluation and scanning)
+# Python: 3.9
+# Usage: conda run -n pyrose python block2_evaluation/step4_rosetta_dock.py [args]
+#
+# IMPORTANT: PyRosetta requires a free academic license.
+#   1. Register: https://www.pyrosetta.org/downloads
+#   2. Download wheel: pyrosetta-2026.19+release.*-cp39-linux_x86_64.whl
+#   3. Install:  pip install pyrosetta-2026.19+release.*.whl
+# =============================================================
+
+channels:
+  - conda-forge
+  - defaults
+
+dependencies:
+  - python=3.9
+  - pip
+
+  - pip:
+    # ── PyRosetta (manual install required — see above) ──
+    # pyrosetta-2026.19+release.36534127fc-cp39-cp39-linux_x86_64.whl
+    - pyrosetta==2026.19+release.36534127fc
+    - pyrosetta-distributed==0.0.4
+
+    # ── Scientific stack ──
+    - numpy==2.0.2
+    - scipy>=1.11.0
+    - pandas>=2.0.0
+
+    # ── Cheminformatics (step3 can also run here) ──
+    - rdkit>=2023.9.5
+
+    # ── Visualization ──
+    - matplotlib>=3.7.0
+    - seaborn>=0.12.0
+
+    # ── Utilities ──
+    - tqdm>=4.66.0
+    - biopython>=1.81
+
+# PyRosetta version used in development:
+#   PyRosetta-4 2026 [Rosetta PyRosetta4.Release.python39.ubuntu
+#   2026.19+release.36534127fcb60cadc591e0f487c312a3fba4abc0
+#   2026-05-07T11:56:27]
+#
+# Key PyRosetta modules used:
+#   pyrosetta.rosetta.protocols.docking.DockMCMProtocol
+#   pyrosetta.rosetta.protocols.analysis.InterfaceAnalyzerMover
+#   pyrosetta.rosetta.protocols.simple_filters.ShapeComplementarityFilter
+#   pyrosetta.rosetta.protocols.simple_moves.MutateResidue
+#   pyrosetta.rosetta.protocols.minimization_packing.PackRotamersMover
+#
+# Hardware requirements:
+#   - CPU: ≥8 cores recommended (parallel scanning)
+#   - RAM: ≥32GB (20 parallel PyRosetta processes)
+#   - No GPU required
