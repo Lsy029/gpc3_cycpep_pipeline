@@ -125,11 +125,22 @@ pip install pyrosetta-2026.19+release.*.whl
 
 ### 4. 下载 RFdiffusion 模型权重
 
-**方法一：HuggingFace（推荐，稳定）**
+**方法一：IPD 服务器直接下载（推荐）**
 
 ```bash
 mkdir -p RFdiffusion/models
-pip install huggingface_hub
+wget -P RFdiffusion/models/ \
+  http://files.ipd.uw.edu/pub/RFdiffusion/e29311f6f1bf1af907f9ef9f44b8328b/Complex_base_ckpt.pt
+```
+
+**方法二：HuggingFace（需要登录 token）**
+
+```bash
+# 1. 在 https://huggingface.co/settings/tokens 生成 token
+# 2. 登录
+huggingface-cli login
+# 3. 下载
+mkdir -p RFdiffusion/models
 python -c "
 from huggingface_hub import hf_hub_download
 hf_hub_download(
@@ -138,14 +149,6 @@ hf_hub_download(
     local_dir='RFdiffusion/models/'
 )
 "
-```
-
-**方法二：直接 wget（IPD 服务器，偶有故障）**
-
-```bash
-mkdir -p RFdiffusion/models
-wget -P RFdiffusion/models/ \
-  http://files.ipd.uw.edu/pub/RFdiffusion/6f5902ac237024bdd0c176cb93063dc6/Complex_base_ckpt.pt
 ```
 
 ### 5. 安装 Python 依赖
