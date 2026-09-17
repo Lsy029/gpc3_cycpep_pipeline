@@ -1,4 +1,4 @@
-<img width="1008" height="530" alt="image" src="https://github.com/user-attachments/assets/13464b2d-3e38-4bae-a9f6-524507bede88" /># GPC3 环肽设计流程
+># GPC3 环肽设计流程
 
 针对 GPC3（磷脂酰肌醇蛋白聚糖-3，UniProt P51654）靶点的 CIAc-W 环肽从头设计、评估与优化端到端流程。
 
@@ -105,7 +105,7 @@
 
 ---
 
-## 系统环境要求
+## 系统环境要求(以下配置如果显卡不是完全相同都需要进行适当的修改）
 
 ### 硬件
 
