@@ -1,4 +1,4 @@
-# GPC3 环肽设计流程
+<img width="1008" height="530" alt="image" src="https://github.com/user-attachments/assets/13464b2d-3e38-4bae-a9f6-524507bede88" /># GPC3 环肽设计流程
 
 针对 GPC3（磷脂酰肌醇蛋白聚糖-3，UniProt P51654）靶点的 CIAc-W 环肽从头设计、评估与优化端到端流程。
 
@@ -288,7 +288,7 @@ python block2_evaluation/step6_rank_and_report.py \
 
 #### 第二模块：【可选】ColabFold AF2 结构验证（step5b）
 
-> ⚠️ **此步骤为可选**，需要单独的 `colabfold` conda 环境和 GPU。
+>  **此步骤为可选**，需要单独的 `colabfold` conda 环境和 GPU。如果有需求或有条件可以作为物理能量之外对结构亲和力/置信度的评估标准。
 > 可在 step5 之后、step6 之前运行，也可在 step6 之后对 top-N 运行。
 
 **环境要求：**
