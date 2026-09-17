@@ -376,7 +376,7 @@ python block3_mutation_scan/step7_alanine_scan.py \
     --output_dir block3_mutation_scan/scan_results \
     --n_workers 20
 
-# 第八步：第二轮——热点位点饱和突变
+# 第八步：第二轮——热点位点饱和突变（丙氨酸扫描效果显著的进入这一轮突变）
 python block3_mutation_scan/step8_saturation_scan.py \
     --docking_dir block2_evaluation/docking_results \
     --hotspot_positions 2 3 9 11 12 \
