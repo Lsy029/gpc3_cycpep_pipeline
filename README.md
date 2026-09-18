@@ -354,7 +354,7 @@ python block2_evaluation/step5b_colabfold_validate.py \
 | iptm | 0.160 |
 | pLDDT_pep | ~72 |
 
-![seq65 PAE](docs/images/colabfold_pae_seq65.png)
+
 
 ---
 
