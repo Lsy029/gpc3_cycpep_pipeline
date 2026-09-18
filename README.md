@@ -6,6 +6,8 @@
 
 ## 流程总览
 
+![Pipeline Flowchart](docs/images/pipeline_flowchart.png)
+
 ```
 ┌──────────────────────────────────────────────────────────────────┐
 │  第一模块：设计                        【环境：SE3nv2，需 GPU】     │
