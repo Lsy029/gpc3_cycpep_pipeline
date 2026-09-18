@@ -6,6 +6,7 @@
 
 ## 流程总览
 
+![Pipeline Flowchart](docs/images/pipeline_flowchart.png)
 
 ```
 ┌──────────────────────────────────────────────────────────────────┐
