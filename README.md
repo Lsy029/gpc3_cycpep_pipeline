@@ -24,6 +24,8 @@
 │         ↓                                                        │
 │  step5_interface_metrics.py ──►  evaluation_results.csv          │
 │         ↓             （9 项指标：ddG、dSASA、SC、堆积密度……）     │
+│  step5b_colabfold_validate.py ──►  colabfold_scores.csv  【可选】 │
+│         ↓             （AF2 异源二聚体验证：iPAE/iptm/pLDDT）     │
 │  step6_rank_and_report.py ──►  ranked_candidates.csv             │
 │                                evaluation_report.html            │
 └──────────────────────────────────────────────────────────────────┘
@@ -89,19 +91,6 @@
 **pos9 位点饱和突变详图**（Y→F 改善信号）
 
 ![pos9 饱和突变](docs/images/saturation_pos9.png)
-
----
-
-### 参考：ColabFold AF2 结构验证（最优候选 seq65）
-
-**预测对齐误差（PAE）图**  
-左下角肽-受体区块颜色越深，界面预测置信度越高
-
-![seq65 PAE](docs/images/colabfold_pae_seq65.png)
-
-**pLDDT 置信度图**
-
-![seq65 pLDDT](docs/images/colabfold_plddt_seq65.png)
 
 ---
 
